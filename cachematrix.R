@@ -16,20 +16,21 @@ makeCacheMatrix <- function(x = numeric()) {
 } 
 
 ## calculates the inverse of matrix x.  Will use a cashed solution if available 
-cacheSolve <- function(x, ...) { 
-  m <- x$getinv
+cacheSolve <- function (x, ...) { 
+  m <- x$getinv()
   print (m)   
   if (!is.null(m)) {
     message ("Using cashed data")
     return (m)
   }
   else{
-    gotx <- x$get
+    ##gotx <- x$get()
     ##print(gotx)
-    i <- solve(gotx)
+    i <- solve(x$get())
     x$setinv(i)
-  }
-  i
+    i
+    }
+  
   ## Return a matrix that is the inverse of 'x'
   
 } 
