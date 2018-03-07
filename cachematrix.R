@@ -1,4 +1,7 @@
-## Gets and Sets that stores a Matrix and it's inverse
+## This set of functions can be used to store a matrix and it's inverse.
+##If an inverse has already been calculated it will pull the stored result rather than recalculate it.
+
+## Gets and Sets a Matrix and its inverse
 
 makeCacheMatrix <- function(x = numeric()) { 
   i <- NULL
@@ -15,18 +18,16 @@ makeCacheMatrix <- function(x = numeric()) {
   list (set=set, get=get, getinv=getinv, setinv=setinv)
 } 
 
-## calculates the inverse of matrix x.  Will use a cashed solution if available 
+## calculates the inverse of matrix x. Will use a cashed solution if available 
+
 cacheSolve <- function (x, ...) { 
   m <- x$getinv()
-  print (m)   
   if (!is.null(m)) {
-    message ("Using cashed data")
+    message ("Using cached data")
     return (m)
   }
   else{
-    ##gotx <- x$get()
-    ##print(gotx)
-    i <- solve(x$get())
+      i <- solve(x$get())
     x$setinv(i)
     i
     }
